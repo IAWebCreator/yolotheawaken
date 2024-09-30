@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YoloTheAwaken - Meme Token</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+
+        :root {
+            --primary-color: #FFD700;
+            --secondary-color: #00CED1;
+            --text-color: #FFFFFF;
+            --background-color: #000033;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--background-color);
+            color: var(--text-color);
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            background-color: rgba(0, 0, 51, 0.8);
+            backdrop-filter: blur(10px);
+            padding: 20px 0;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--primary-color);
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 20px;
+        }
+
+        .nav-links a {
+            color: var(--text-color);
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-color);
+        }
+
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, #000033, #00CED1);
+            z-index: -1;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        h1 {
+            font-size: 4rem;
+            margin-bottom: 20px;
+            color: var(--primary-color);
+            text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+        }
+
+        .hero p {
+            font-size: 1.5rem;
+            margin-bottom: 30px;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 15px 30px;
+            background-color: var(--primary-color);
+            color: var(--background-color);
+            text-decoration: none;
+            font-weight: 600;
+            border-radius: 50px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(255, 215, 0, 0.3);
+        }
+
+        .section {
+            padding: 100px 0;
+        }
+
+        h2 {
+            font-size: 2.5rem;
+            margin-bottom: 30px;
+            color: var(--primary-color);
+            text-align: center;
+        }
+
+        .about-content {
+            display: flex;
+            align-items: center;
+            gap: 50px;
+        }
+
+        .about-image {
+            flex: 1;
+            position: relative;
+        }
+
+        .about-image img {
+            width: 100%;
+            border-radius: 10px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .about-text {
+            flex: 1;
+        }
+
+        .tokenomics-list {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .tokenomics-list li {
+            margin-bottom: 15px;
+            padding-left: 30px;
+            position: relative;
+        }
+
+        .tokenomics-list li::before {
+            content: '\f3d1';
+            font-family: 'Font Awesome 5 Free';
+            font-weight: 900;
+            position: absolute;
+            left: 0;
+            color: var(--primary-color);
+        }
+
+        .how-to-buy-steps {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 30px;
+        }
+
+        .step {
+            flex-basis: calc(50% - 15px);
+            background-color: rgba(255, 255, 255, 0.1);
+            padding: 30px;
+            border-radius: 10px;
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .step:hover {
+            transform: translateY(-10px);
+        }
+
+        .step-icon {
+            font-size: 3rem;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+        }
+
+        .roadmap {
+            position: relative;
+        }
+
+        .roadmap::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            width: 2px;
+            background-color: var(--primary-color);
+        }
+
+        .roadmap-item {
+            position: relative;
+            margin-bottom: 50px;
+        }
+
+        .roadmap-content {
+            background-color: rgba(255, 255, 255, 0.1);
+            padding: 30px;
+            border-radius: 10px;
+            width: calc(50% - 30px);
+        }
+
+        .roadmap-item:nth-child(odd) .roadmap-content {
+            margin-left: auto;
+        }
+
+        .roadmap-item::before {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background-color: var(--primary-color);
+            border-radius: 50%;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        footer {
+            background-color: rgba(0, 0, 51, 0.8);
+            padding: 50px 0;
+            text-align: center;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .social-links a {
+            color: var(--text-color);
+            font-size: 1.5rem;
+            transition: color 0.3s ease;
+        }
+
+        .social-links a:hover {
+            color: var(--primary-color);
+        }
+
+        .token-address {
+            margin-top: 30px;
+            font-size: 0.9rem;
+            opacity: 0.7;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+            100% { transform: translateY(0px); }
+        }
+
+        .floating {
+            animation: float 4s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .rotate {
+            animation: rotate 20s linear infinite;
+        }
+
+        .particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="particles" id="particles"></div>
+
+    <header>
+        <nav class="container">
+            <a href="#" class="logo">YoloTheAwaken</a>
+            <div class="nav-links">
+                <a href="#about">About</a>
+                <a href="#tokenomics">Tokenomics</a>
+                <a href="#how-to-buy">How to Buy</a>
+                <a href="#roadmap">Roadmap</a>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="hero-content">
+                <h1 class="pulse">YoloTheAwaken</h1>
+                <p>Embrace the Yolo spirit and join the enlightened journey!</p>
+                <a href="#how-to-buy" class="cta-button">Get YTA Now</a>
+            </div>
+        </section>
+
+        <section id="about" class="section">
+            <div class="container">
+                <h2>About YoloTheAwaken</h2>
+                <div class="about-content">
+                    <div class="about-image">
+                        <img src="https://placekitten.com/500/500" alt="YoloTheAwaken Concept" class="floating">
+                    </div>
+                    <div class="about-text">
+                        <p>YoloTheAwaken is not just another meme token – it's a movement that combines the thrill of YOLO (You Only Live Once) with the wisdom of awakening. Our mission is to bring humor and enlightenment to the crypto world, creating a community of like-minded individuals who dare to dream big and live life to the fullest.</p>
+                        <p>With YTA, you're not just investing in a token; you're joining a revolution that celebrates life, laughter, and the endless possibilities of the blockchain. Are you ready to awaken your crypto senses and embark on this exciting journey with us?</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="tokenomics" class="section">
+            <div class="container">
+                <h2>Tokenomics</h2>
+                <ul class="tokenomics-list">
+                    <li>Total Supply: 1,000,000,000,000 YTA</li>
+                    <li>5% Transaction Fee: 2% Redistribution, 2% Liquidity Pool, 1% Burn</li>
+                    <li>50% of Total Supply Locked for 1 Year</li>
+                    <li>Regular Burn Events to Increase Scarcity</li>
+                </ul>
+                <div class="token-image rotate">
+                    <img src="https://placekitten.com/300/300" alt="YTA Token" style="width: 200px; height: 200px; border-radius: 50%;">
+                </div>
+            </div>
+        </section>
+
+        <section id="how-to-buy" class="section">
+            <div class="container">
+                <h2>How to Buy</h2>
+                <div class="how-to-buy-steps">
+                    <div class="step">
+                        <div class="step-icon"><i class="fas fa-wallet"></i></div>
+                        <h3>Step 1: Get a Wallet</h3>
+                        <p>Download a reputable Ethereum wallet like MetaMask or Trust Wallet.</p>
+                    </div>
+                    <div class="step">
+                        <div class="step-icon"><i class="fas fa-coins"></i></div>
+                        <h3>Step 2: Acquire ETH</h3>
+                        <p>Purchase Ethereum (ETH) from a cryptocurrency exchange like Coinbase or Binance.</p>
+                    </div>
+                    <div class="step">
+                        <div class="step-icon"><i class="fas fa-exchange-alt"></i></div>
+                        <h3>Step 3: Connect to a DEX</h3>
+                        <p>Connect your wallet to a decentralized exchange (DEX) like Uniswap or SushiSwap.</p>
+                    </div>
+                    <div class="step">
+                        <div class="step-icon"><i class="fas fa-rocket"></i></div>
+                        <h3>Step 4: Swap ETH for YTA</h3>
+                        <p>Use the DEX's swap feature to exchange your ETH for YTA tokens.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="roadmap" class="section">
+            <div class="container">
+                <h2>Roadmap</h2>
+                <div class="roadmap">
+                    <div class="roadmap-item">
+                        <div class="roadmap-content">
+                            <h3>Phase 1: Awakening</h3>
+                            <p>Launch YTA token, build community, and start initial marketing campaigns.</p>
+                        </div>
+                    </div>
+                    <div class="roadmap-item">
+                        <div class="roadmap-content">
+                            <h3>Phase 2: Enlightenment</h3>
+                            <p>Expand partnerships, launch YTA merchandise, and develop YTA mobile app.</p>
+                        </div>
+                    </div>
+                    <div class="roadmap-item">
+                        <div class="roadmap-content">
+                            <h3>Phase 3: Transcendence</h3>
+                            <p>Introduce YTA staking, launch NFT collection, and expand to other blockchains.</p>
+                        </div>
+                    </div>
+                    <div class="roadmap-item">
+                        <div class="roadmap-content">
+                            <h3>Phase 4: Nirvana</h3>
+                            <p>Develop YTA-powered DeFi platform and explore metaverse integration.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="token-address">
+                <span>Contract Address: 0x1234...5678</span>
+                <i class="fas fa-copy"></i>
+            </div>
+            <div class="social-links">
+                <a href="#" target="_blank"><i class="fab fa-youtube"></i></a>
+                <a href="#" target="_blank"><i class="fab fa-tiktok"></i></a>
+                <a href="#" target="_blank"><i class="fab fa-instagram"></i></a>
+                <a href="#" target="_blank"><i class="fab fa-facebook"></i></a>
+                <a href="#" target="_blank"><i class="fab fa-twitter"></i></a>
+                <a href="#" target="_blank"><i class="fas fa-chart-line"></i></a>
+                <a href="#" target="_blank"><i class="fab fa-telegram"></i></a>
+                <a href="#" target="_blank"><i class="fas fa-search-dollar"></i></a>
+            </div>
+        </div>
